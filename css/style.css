@@ -1,0 +1,953 @@
+/* ==========================================================================
+   Clínica Serena — folha de estilos
+   Estrutura: tokens > base > componentes > seções > responsivo
+   ========================================================================== */
+
+/* ---------- Tokens ---------- */
+:root {
+  --verde: #1F5C56;
+  --verde-escuro: #143F3B;
+  --pessego: #E9B48A;
+  --verde-claro: #E3EFEB;
+  --fundo: #F7F9F8;
+  --branco: #FFFFFF;
+  --texto: #1E2B28;
+  --texto-secundario: #3F504C;
+  --texto-auxiliar: #4A5B57; /* paleta oficial; a referência não usa este tom */
+  --borda: #D5E2DD;
+  --borda-campo: #5F7A73;
+  --rodape-texto: #D5E2DD;
+  --erro: #B3261E;
+
+  --fonte-titulo: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --fonte-texto: "Nunito Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --container: 1056px;
+  --gutter: 24px;
+  --header-altura: 76px;
+  --raio-pilula: 999px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* altura do cabeçalho + 1px da borda inferior */
+  scroll-padding-top: calc(var(--header-altura) + 1px);
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--texto);
+  background-color: var(--fundo);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fonte-titulo);
+  color: var(--texto);
+}
+
+a {
+  color: var(--verde);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--verde);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.container-narrow {
+  max-width: calc(736px + 2 * var(--gutter));
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 200;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background-color: var(--verde);
+  color: var(--branco);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* ---------- Botões ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 2px solid transparent;
+  border-radius: var(--raio-pilula);
+  font-family: var(--fonte-titulo);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--verde);
+  color: var(--branco);
+}
+
+.btn-primary:hover {
+  background-color: var(--verde-escuro);
+}
+
+.btn-primary:disabled {
+  cursor: progress;
+  background-color: var(--verde-escuro);
+}
+
+.btn-outline {
+  border-color: var(--verde);
+  background-color: transparent;
+  color: var(--verde);
+}
+
+.btn-outline:hover {
+  background-color: var(--verde);
+  color: var(--branco);
+}
+
+.btn-block {
+  width: 100%;
+  min-height: 54px;
+}
+
+/* ---------- Marca ---------- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--texto);
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 32px;
+  height: 32px;
+}
+
+.brand-light {
+  color: var(--branco);
+}
+
+/* ---------- Seção 1: cabeçalho ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--borda);
+  background-color: var(--branco);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  min-height: var(--header-altura);
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.site-nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  gap: 24px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: block;
+  padding: 6px 2px;
+  color: var(--texto);
+  font-size: 16px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: var(--verde);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.btn-header {
+  min-height: 48px;
+  padding: 0 21px;
+  font-size: 16px;
+}
+
+/* ---------- Seção 2: hero ---------- */
+.hero {
+  padding: 80px 0;
+  background-color: var(--verde-claro);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
+  align-items: center;
+  gap: 48px;
+}
+
+.eyebrow {
+  margin-bottom: 24px;
+  color: var(--verde);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin-bottom: 24px;
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.hero-lead {
+  color: var(--texto-secundario);
+  font-size: 19px;
+  line-height: 1.63;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.hero-media {
+  position: relative;
+}
+
+.hero-image {
+  width: 100%;
+  border-radius: 28px;
+}
+
+.hero-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  padding: 8px 14px;
+  border-radius: var(--raio-pilula);
+  background-color: var(--branco);
+  color: var(--texto-secundario);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+/* ---------- Seções (base) ---------- */
+.section {
+  padding: 88px 0;
+}
+
+.section h2 {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.section-header {
+  max-width: 620px;
+  margin-bottom: 40px;
+}
+
+.section-header p {
+  margin-top: 12px;
+  color: var(--texto-secundario);
+  line-height: 1.7;
+}
+
+/* ---------- Seção 3: serviços ---------- */
+.services {
+  background-color: var(--branco);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-card {
+  padding: 28px;
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  background-color: var(--fundo);
+}
+
+.service-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background-color: var(--verde-claro);
+}
+
+.service-icon img {
+  width: 26px;
+  height: 26px;
+}
+
+.service-card h3 {
+  margin-bottom: 14px;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.service-card p {
+  color: var(--texto-secundario);
+}
+
+/* ---------- Seção 4: FAQ ---------- */
+.faq {
+  background-color: var(--fundo);
+}
+
+.faq h2 {
+  margin-bottom: 32px;
+}
+
+.accordion-item {
+  border-top: 1px solid var(--borda);
+}
+
+.accordion-item:last-child {
+  border-bottom: 1px solid var(--borda);
+}
+
+.accordion-heading {
+  font-size: inherit;
+}
+
+.accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 20px 0;
+  border: 0;
+  background-color: transparent;
+  color: var(--texto);
+  font-family: var(--fonte-titulo);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accordion-trigger:hover {
+  color: var(--verde);
+}
+
+.accordion-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.accordion-icon::before,
+.accordion-icon::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--verde);
+  transition: transform 0.2s ease;
+}
+
+.accordion-icon::after {
+  transform: rotate(90deg);
+}
+
+.accordion-trigger[aria-expanded="true"] .accordion-icon::after {
+  transform: rotate(0deg);
+}
+
+.accordion-panel {
+  margin-top: -2px;
+  padding-bottom: 20px;
+  color: var(--texto-secundario);
+}
+
+/* ---------- Seção 5: agendamento ---------- */
+.booking {
+  background-color: var(--verde-claro);
+}
+
+.booking-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 9fr) minmax(0, 11fr);
+  align-items: start;
+  gap: 48px;
+}
+
+.booking-text h2 {
+  max-width: 420px;
+  margin-bottom: 20px;
+  line-height: 1.175;
+}
+
+.booking-text p {
+  color: var(--texto-secundario);
+}
+
+.booking-text p + p {
+  margin-top: 18px;
+}
+
+.booking-card {
+  padding: 32px;
+  border-radius: 24px;
+  background-color: var(--branco);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  color: var(--texto);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.form-field input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--borda-campo);
+  border-radius: 10px;
+  background-color: var(--branco);
+  color: var(--texto);
+  font-size: 16px;
+}
+
+.form-field input::placeholder {
+  color: var(--borda-campo);
+  opacity: 1;
+}
+
+.form-field input:focus-visible {
+  border-color: var(--verde);
+  outline-offset: 1px;
+}
+
+.form-field input[aria-invalid="true"] {
+  border-color: var(--erro);
+  box-shadow: 0 0 0 1px var(--erro);
+}
+
+.field-error {
+  color: var(--erro);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.field-error:empty {
+  display: none;
+}
+
+.form-consent {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 6px 12px;
+  margin: 2px 0 18px;
+}
+
+.form-consent input {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  accent-color: var(--verde);
+  cursor: pointer;
+}
+
+.form-consent label {
+  color: var(--texto-secundario);
+  font-size: 15px;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.form-consent a {
+  font-weight: 700;
+  text-underline-offset: 2px;
+}
+
+.form-consent .field-error {
+  grid-column: 2;
+}
+
+.form-feedback {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-left: 4px solid var(--verde);
+  border-radius: 10px;
+  background-color: var(--verde-claro);
+  color: var(--verde-escuro);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.form-feedback:focus {
+  outline: none;
+}
+
+.form-feedback:focus-visible {
+  outline: 3px solid var(--verde);
+}
+
+/* ---------- Seção 6: rodapé ---------- */
+.site-footer {
+  padding: 64px 0 32px;
+  background-color: var(--texto);
+  color: var(--rodape-texto);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--pessego);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 32px 48px;
+}
+
+.footer-notice {
+  margin-top: 12px;
+}
+
+.footer-title {
+  margin-bottom: 10px;
+  color: var(--branco);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.footer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-list a {
+  color: var(--branco);
+  text-underline-offset: 3px;
+}
+
+.footer-list a:hover {
+  color: var(--pessego);
+}
+
+.footer-bottom {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--texto-secundario);
+  font-size: 14px;
+}
+
+/* ---------- Página de política de privacidade ---------- */
+.legal {
+  padding: 64px 0 88px;
+  background-color: var(--branco);
+}
+
+.legal h1 {
+  margin-bottom: 12px;
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.legal h2 {
+  margin: 36px 0 10px;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.legal p,
+.legal li {
+  color: var(--texto-secundario);
+}
+
+.legal ul {
+  margin: 8px 0 0;
+  padding-left: 22px;
+}
+
+.legal-note {
+  margin-top: 8px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background-color: var(--verde-claro);
+}
+
+.header-back {
+  margin-left: auto;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+/* Tablet e notebooks pequenos */
+@media (max-width: 1023px) {
+  .hero-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+  }
+
+  .footer-grid {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 960px) {
+  .booking-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .booking-text h2 {
+    max-width: none;
+  }
+}
+
+/* Mobile (até 768px) */
+@media (max-width: 768px) {
+  :root {
+    --header-altura: 64px;
+    --gutter: 20px;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  .btn {
+    font-size: 16px;
+  }
+
+  .site-footer,
+  .form-consent label {
+    font-size: 14px;
+  }
+
+  .brand {
+    font-size: 20px;
+  }
+
+  .brand-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: 0 -8px 0 auto;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .menu-toggle[aria-expanded="true"] {
+    background-color: var(--verde-claro);
+  }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 4px var(--gutter) 24px;
+    border-bottom: 1px solid var(--borda);
+    background-color: var(--branco);
+    box-shadow: 0 16px 24px rgba(30, 43, 40, 0.08);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  .site-nav.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+  }
+
+  .nav-link {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--borda);
+  }
+
+  .btn-header {
+    margin-top: 20px;
+    min-height: 50px;
+  }
+
+  .hero {
+    padding: 48px 0 56px;
+  }
+
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .eyebrow {
+    margin-bottom: 18px;
+    font-size: 12px;
+  }
+
+  .hero h1 {
+    margin-bottom: 20px;
+    font-size: 38px;
+  }
+
+  .hero-lead {
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    margin-top: 28px;
+  }
+
+  .hero-media {
+    max-width: 560px;
+  }
+
+  .hero-image {
+    border-radius: 24px;
+  }
+
+  .hero-badge {
+    bottom: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .section h2 {
+    font-size: 30px;
+  }
+
+  .section-header {
+    margin-bottom: 28px;
+  }
+
+  .services-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .service-card {
+    padding: 24px;
+  }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .service-icon img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .service-card h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+
+  .faq h2 {
+    margin-bottom: 24px;
+  }
+
+  .accordion-trigger {
+    padding: 18px 0;
+    font-size: 17px;
+    line-height: 1.4;
+  }
+
+  .booking-card {
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer-bottom {
+    margin-top: 36px;
+  }
+
+  .legal h1 {
+    font-size: 32px;
+  }
+}
+
+/* Telas estreitas */
+@media (max-width: 560px) {
+  .form-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
